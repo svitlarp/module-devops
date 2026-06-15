@@ -14,7 +14,6 @@ echo "Installation is terminated"
 }
 
 
-
 # Django
 install_django_windows ()
 {
@@ -25,8 +24,9 @@ echo "Installation is terminated"
 
 
 # install docker
-$ sudo apt-get update
-$ sudo apt-get install -y python3.6 python3-pip python3-venv
+"Docker Desktop Installer.exe" install --user
+Start-Process 'Docker Desktop Installer.exe' -Wait install
+
 
 
 # install docker-compose

@@ -4,9 +4,9 @@
 install_pyhton3_linux ()
 {
 echo "Installing Python3 for Linux"
-
-
-
+sudo apt update
+sudo apt install python3 python3-pip -y
+python3 --version
 echo "Installation is terminated"
 }
 
