@@ -3,7 +3,9 @@
 
 # Check versions
 check_versions () {
-    for item in "${arr[@]}"; do
+    local items=("$@")
+
+    for item in "${items[@]}"; do
         base="${item%% *}"  # for commands that consiste of more than 1 word like "docker compose"
 
         # Check if command exists

@@ -24,7 +24,8 @@ done
 printf "\n"
 
 # check if these programms are installed 
-check_versions
+missing=()
+check_versions "${arr[@]}"
 if [ ${#missing[@]} -eq 0 ]; then
     echo -e "\n${GREEN}All tools are installed${NC}"
 else
