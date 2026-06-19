@@ -4,14 +4,15 @@
 
 install_django_linux () {
     echo "Installing Django for Linux"
-    python -m pip install Django
+    python3 -m pip install Django
     echo "Installation complete"
 }
 
 install_docker_linux () {
     echo "Installing Docker for Linux"
-    sudo apt-get install -y ca-certificates curl gnupg
-    curl -fsSL https://get.docker.com | sudo sh
+    sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc podman-docker containerd runc | cut -f1)
+    sudo apt-get update
+    sudo apt install ./docker-desktop-amd64.deb
     echo "Installation complete"
 }
 
@@ -35,7 +36,6 @@ list_installer_linux() {
     # sudo apt-get update
 
     for item in "${missing[@]}"; do
-        echo "Installing $item .."
         case "$item" in 
             "django-admin") install_django_linux ;;
             "docker") install_docker_linux ;;

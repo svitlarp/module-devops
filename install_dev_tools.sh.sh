@@ -3,8 +3,7 @@
 
 source ./check_versions.sh
 source ./lib/installer_linux.sh
-source ./lib/installer_mac.sh
-source ./lib/installer_windows.sh
+
 
 
 # Proggrams to be installed:
@@ -35,22 +34,5 @@ else
     done
 fi
 
-# check OS
-echo "Which OS linux/mac/windows?"
-read answer
-if [ "$answer" = "linux" ]; then
-    echo "let install missing programs for Linux OS"
-    list_installer_linux
-elif
-    [ "$answer" = "mac" ]; then
-    echo "let install missing programs for Mac OS" 
-    list_installer_mac
-elif 
-    [ "$answer" = "windows" ]; then
-    echo "Commands for Windows OS are not provided"
-    exit 1
-else
-    echo "Commands for "$answer" are not provided"
-    exit 1
-fi
-check_versions
+# Install programs
+list_installer_linux
