@@ -1,5 +1,7 @@
 #! /bin/bash
 
+readonly REQUIRED_PYTHON_VERSION="${REQUIRED_PYTHON_VERSION:-3.9}" 
+
 
 # Check versions
 check_versions () {
@@ -16,7 +18,11 @@ check_versions () {
 
         # Handling for Python3 (> 3.9)
         if [[ "$item" == "python3" ]]; then
-            if ! python3 -c 'import sys; exit(0 if sys.version_info > (3,9) else 1)'; then
+
+            PYTHON_VERSION=$(python3 --version | awk '{print $2}')
+            PYTHON_MAJOR_MINOR=$(echo "$PYTHON_VERSION" | cut -d. -f1,2)
+
+            if [[ "$(printf '%s\n' "$REQUIRED_PYTHON_VERSION" "$PYTHON_MAJOR_MINOR" | sort -V | head -n1)" != "$REQUIRED_PYTHON_VERSION" ]]; then
                 missing+=("$item")
             else 
                 echo "Check python3: $(python3 --version)"
